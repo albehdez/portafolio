@@ -1,41 +1,6 @@
-"use client";
-
-import { useState, FormEvent } from "react";
-import { contactInfo, personalInfo } from "@/lib/data";
+import { personalInfo } from "@/lib/data";
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus("loading");
-
-    // Simulate form submission (replace with actual API call)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // In production, you would call your API endpoint here:
-    // const response = await fetch(contactInfo.formEndpoint, {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData),
-    // });
-
-    setStatus("success");
-    setFormData({ name: "", email: "", subject: "", message: "" });
-
-    setTimeout(() => setStatus("idle"), 5000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
   return (
     <section
       id="contact"

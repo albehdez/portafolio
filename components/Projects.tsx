@@ -2,7 +2,6 @@ import Image from "next/image";
 import { projects } from "@/lib/data";
 
 export function Projects() {
-  const featuredProjects = projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (

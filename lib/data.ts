@@ -4,7 +4,7 @@ export const personalInfo = {
   shortBio: "Desarrollador apasionado por crear soluciones web modernas y escalables",
   email: "alberto@ejemplo.com",
   location: "Ciudad, País",
-  avatar: "/profile.jpg", // Si tienes imagen, pon la ruta aquí: "/avatar.jpg"
+  avatar: "/portafolio/profile.jpg", // Si tienes imagen, pon la ruta aquí: "/avatar.jpg"
   social: {
     github: "https://github.com/albehdez",
     linkedin: "https://www.linkedin.com/in/alberto-hern%C3%A1ndez-4b113b215/",
@@ -78,7 +78,7 @@ export const projects = [
     tags: ["Next.js", "TypeScript", "Tailwind", "Prisma", "PostgreSQL", "Stripe"],
     github: "https://github.com/tuusuario/ecommerce",
     demo: "https://ecommerce-demo.vercel.app",
-    image: "/projects/ecommerce.svg",
+    image: "/portafolio/projects/ecommerce.svg",
     featured: true,
   },
   {
@@ -88,7 +88,7 @@ export const projects = [
     tags: ["React", "Node.js", "Socket.io", "MongoDB", "Express", "TypeScript"],
     github: "https://github.com/tuusuario/taskmanager",
     demo: "https://taskmanager-demo.vercel.app",
-    image: "/projects/taskmanager.svg",
+    image: "/portafolio/projects/taskmanager.svg",
     featured: true,
   },
   {
@@ -98,7 +98,7 @@ export const projects = [
     tags: ["Next.js", "TypeScript", "Tailwind", "MDX", "Vercel"],
     github: "https://github.com/tuusuario/blog-cms",
     demo: "https://blog-demo.vercel.app",
-    image: "/projects/blogcms.svg",
+    image: "/portafolio/projects/blogcms.svg",
     featured: false,
   },
   {
@@ -108,7 +108,7 @@ export const projects = [
     tags: ["React", "Recharts", "Node.js", "PostgreSQL", "JWT", "Docker"],
     github: "https://github.com/tuusuario/dashboard",
     demo: "https://dashboard-demo.vercel.app",
-    image: "/projects/dashboard.svg",
+    image: "/portafolio/projects/dashboard.svg",
     featured: false,
   },
   {
@@ -118,7 +118,7 @@ export const projects = [
     tags: ["React", "TypeScript", "PWA", "OpenWeather API", "Workbox"],
     github: "https://github.com/tuusuario/weather-pwa",
     demo: "https://weather-pwa.vercel.app",
-    image: "/projects/weather.svg",
+    image: "/portafolio/projects/weather.svg",
     featured: false,
   },
   {
@@ -128,7 +128,7 @@ export const projects = [
     tags: ["Node.js", "Express", "TypeScript", "Jest", "Swagger", "Prisma"],
     github: "https://github.com/tuusuario/api-boilerplate",
     demo: null,
-    image: "/projects/api.svg",
+    image: "/portafolio/projects/api.svg",
     featured: false,
   },
 ];
