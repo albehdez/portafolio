@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "generate:icon": "node scripts/generate-icon.mjs",
     "start": "next start",
     "lint": "eslint",
     "predeploy": "next build",

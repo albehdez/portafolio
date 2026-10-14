@@ -1,16 +1,36 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Geist_Mono, Instrument_Serif, Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Titulares: Archivo (grotesca ajustada, muy apretada)
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
+  display: "swap",
 });
 
+// Cuerpo de texto: Inter
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Etiquetas HUD, botones y números: Geist Mono
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Acentos editoriales: Instrument Serif
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -51,8 +71,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#f2f1ee" },
+    { media: "(prefers-color-scheme: dark)", color: "#121316" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -67,16 +87,10 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      className={`${archivo.variable} ${inter.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <script
           // Aplica el tema guardado antes de la hidratación para evitar el
           // parpadeo. Por defecto se usa el modo claro, sin mirar al navegador.
@@ -85,7 +99,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">
+      <body className="min-h-full flex flex-col bg-bg text-ink antialiased">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

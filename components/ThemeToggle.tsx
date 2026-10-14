@@ -11,7 +11,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="invert-block flex w-12 items-center justify-center border-l border-line text-muted hover:text-invert-fg focus:outline-none"
       aria-label={label}
       title={label}
       aria-pressed={isDark}
@@ -19,7 +19,7 @@ export function ThemeToggle() {
       {isDark ? (
         // Sol: en modo oscuro, indica que se puede pasar a claro
         <svg
-          className="w-5 h-5 text-zinc-300"
+          className="h-4 w-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -35,7 +35,7 @@ export function ThemeToggle() {
       ) : (
         // Luna: en modo claro, indica que se puede pasar a oscuro
         <svg
-          className="w-5 h-5 text-zinc-700"
+          className="h-4 w-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

@@ -4,10 +4,11 @@ import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-zinc-900">
+    <div className="flex min-h-screen flex-col bg-bg text-ink">
       <Navigation />
       <main className="flex-1" id="main-content">
         <Hero />
@@ -16,6 +17,7 @@ export default function Home() {
         <Projects />
         <Contact />
       </main>
+      <Footer />
     </div>
   );
 }

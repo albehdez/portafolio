@@ -4,41 +4,85 @@
    clase `.dark` en <html> en lugar de la preferencia del navegador. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ------------------------------------------------------------------ */
+/* Tokens de diseño (estilo ArtCraft)                                  */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-sans: var(--font-geist-sans);
+  --bg: #f2f1ee;          /* papel cálido */
+  --bg-raised: #faf9f7;
+  --bg-sunken: #e9e8e4;
+  --ink: #101014;         /* tinta casi negra */
+  --ink-strong: #000000;
+  --muted: #1010149e;
+  --faint: #1010146b;
+  --line: #10101429;      /* hairline */
+  --line-strong: #10101466;
+  --accent: #2d81ff;
+  --accent-ink: #1659c4;
+  --invert-bg: #101014;
+  --invert-fg: #f2f1ee;
+  --danger: #b3261e;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-archivo);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument);
   color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-
-  /* Custom colors for the portfolio */
-  --color-portfolio-primary: #2563eb;
-  --color-portfolio-primary-hover: #1d4ed8;
-  --color-portfolio-accent: #7c3aed;
-}
-
-/* El modo oscuro se controla exclusivamente con la clase `.dark` en <html>,
-   de forma independiente a la preferencia del navegador/sistema. */
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --bg: #121316;
+  --bg-raised: #101014;
+  --bg-sunken: #060607;
+  --ink: #f2f1ee;
+  --ink-strong: #ffffff;
+  --muted: #f2f1ee99;
+  --faint: #f2f1ee61;
+  --line: #f2f1ee26;
+  --line-strong: #f2f1ee66;
+  --accent: #2d81ff;
+  --accent-ink: #74aaff;
+  --invert-bg: #ffffff;
+  --invert-fg: #0b0b0c;
+  --danger: #ff6259;
   color-scheme: dark;
 }
 
-/* Base styles */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-bg-sunken: var(--bg-sunken);
+  --color-ink: var(--ink);
+  --color-ink-strong: var(--ink-strong);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-invert-bg: var(--invert-bg);
+  --color-invert-fg: var(--invert-fg);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-archivo);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* `clip` evita el scroll horizontal de las marcas de esquina sin crear un
+     contenedor de scroll (por lo que `position: sticky` sigue funcionando). */
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -57,63 +101,191 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv11", "ss01";
 }
 
-/* Focus styles for accessibility */
+::selection {
+  background-color: var(--invert-bg);
+  color: var(--invert-fg);
+}
+
 :focus-visible {
-  outline: 2px solid var(--color-portfolio-primary);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* Selection styles */
-::selection {
-  background-color: var(--color-portfolio-primary);
-  color: white;
-}
-
-::-moz-selection {
-  background-color: var(--color-portfolio-primary);
-  color: white;
-}
-
-/* Scrollbar styles */
+/* Scrollbar minimalista */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #71717a;
-  border-radius: 4px;
+  background: var(--line-strong);
+  border: 3px solid var(--bg);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #52525b;
+  background: var(--ink);
 }
 
-/* Dark mode scrollbar */
-.dark ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+/* ------------------------------------------------------------------ */
+/* Utilidades de marca                                                 */
+/* ------------------------------------------------------------------ */
+
+/* Etiquetas tipo HUD: mono, mayúsculas, muy espaciadas */
+.hud-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #52525b;
+/* Marcas de esquina (cruces de hairline) */
+.tick {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  pointer-events: none;
+  z-index: 31;
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #71717a;
+.tick::before,
+.tick::after {
+  content: "";
+  position: absolute;
+  background: var(--line-strong);
 }
 
-/* Line clamp utility */
+.tick::before {
+  width: 1px;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+}
+
+.tick::after {
+  height: 1px;
+  top: 5px;
+  left: 0;
+  right: 0;
+}
+
+.tick-half::before {
+  top: 5px;
+}
+
+/* Inversión al hover (bloque negro/papel) */
+.invert-block {
+  transition: background-color 0.12s linear, color 0.12s linear;
+}
+
+.invert-block:hover,
+.invert-block[data-active="true"] {
+  background: var(--invert-bg);
+  color: var(--invert-fg);
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 0.15s, background-color 0.15s, color 0.15s,
+    border-color 0.15s;
+}
+
+.btn-primary {
+  background: var(--invert-bg);
+  color: var(--invert-fg);
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+.btn-outline {
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.btn-outline:hover {
+  border-color: transparent;
+  background: var(--invert-bg);
+  color: var(--invert-fg);
+}
+
+/* Titular display */
+.display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+/* Tiles de tecnologías (sección Habilidades).
+   En reposo el logo y el nombre son monocromos; al pasar el cursor adoptan
+   el color de marca del logo y el tile recibe un fondo con tinte de marca
+   (así el cambio se nota también con logos negros: Next.js, Vercel, etc.).
+   Los colores por logo se inyectan como variables en línea desde Skills.tsx. */
+.skill-tile,
+.skill-logo {
+  --brand: var(--brand-light, currentColor);
+}
+
+.dark .skill-tile,
+.dark .skill-logo {
+  --brand: var(--brand-dark, currentColor);
+}
+
+.skill-logo {
+  transition: color 0.2s ease;
+}
+
+/* Icono + nombre toman el color de marca al pasar el cursor */
+.skill-tile:hover .skill-logo,
+.skill-tile:hover .skill-name,
+.skill-tile:focus-within .skill-logo,
+.skill-tile:focus-within .skill-name {
+  color: var(--brand);
+}
+
+/* Fondo con tinte de marca */
+.skill-tile:hover,
+.skill-tile:focus-within {
+  background-color: color-mix(in srgb, var(--brand) 10%, var(--bg-raised));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-logo {
+    transition: none;
+  }
+}
+
+/* Utilidad de recorte de líneas */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -121,12 +293,7 @@ body {
   overflow: hidden;
 }
 
-/* Smooth transitions for theme switching */
-* {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-}
-
-/* Print styles */
+/* Print */
 @media print {
   .no-print {
     display: none !important;
