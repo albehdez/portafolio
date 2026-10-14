@@ -1,7 +1,11 @@
+/**
+ * Datos del portafolio que no dependen del idioma (nombres, enlaces, niveles,
+ * tecnologías). Todo el texto traducible vive en `dictionaries/*.json`.
+ */
+
 export const personalInfo = {
   name: "Alberto Hernández",
   title: "Fullstack Developer",
-  shortBio: "Desarrollador apasionado por crear soluciones web modernas y escalables",
   email: "albertojhdez01@gmail.com",
   location: "Ciudad, País",
   avatar: "/portafolio/profile.jpg", // Si tienes imagen, pon la ruta aquí: "/avatar.jpg"
@@ -12,17 +16,15 @@ export const personalInfo = {
   },
 };
 
-export const aboutInfo = {
-  paragraphs: [
-    "Soy un Fullstack Developer con experiencia construyendo aplicaciones web completas usando tecnologías modernas del ecosistema JavaScript/TypeScript. Me especializo en el desarrollo de interfaces de usuario reactivas y APIs robustas.",
-    "Mi stack principal incluye React, Next.js, Node.js, TypeScript, Tailwind CSS y bases de datos como MongoDB y PostgreSQL. También tengo experiencia con Docker, AWS y prácticas de CI/CD para despliegues automatizados.",
-    "Me apasiona escribir código limpio, mantenible y escalable. Disfruto aprendiendo nuevas tecnologías, contribuyendo a proyectos open source y resolviendo problemas complejos con soluciones elegantes.",
-  ],
-};
+/** Categorías de la sección Habilidades. Sus etiquetas están en los diccionarios. */
+export type SkillCategory = "frontend" | "backend" | "database" | "devops" | "IA";
 
-export const skills = [
+export const skills: {
+  category: SkillCategory;
+  items: { name: string; level: number }[];
+}[] = [
   {
-    category: "Frontend",
+    category: "frontend",
     items: [
       { name: "React", level: 90 },
       { name: "Next.js", level: 85 },
@@ -33,47 +35,70 @@ export const skills = [
     ],
   },
   {
-    category: "Backend",
+    category: "backend",
     items: [
       { name: "Nest.js", level: 82 },
     ],
   },
   {
-    category: "Base de Datos",
+    category: "database",
     items: [
       { name: "MongoDB", level: 80 },
       { name: "PostgreSQL", level: 75 },
     ],
   },
   {
-    category: "DevOps & Tools",
+    category: "devops",
     items: [
       { name: "Docker", level: 75 },
       { name: "Git/GitHub", level: 90 },
       { name: "CI/CD", level: 75 },
     ],
   },
+  {
+    category: "IA",
+    items: [
+      { name: "n8n", level: 75 },
+    ],
+  },
 ];
 
-export const projects = [
-  {
-    id: 1,
-    title: "Kribb",
-    description: "Plataforma para comprar bienes inmuebles",
-    tags: ["Expo", "Supabase", "Clerck"],
-    github: "https://github.com/tuusuario/ecommerce",
-    demo: "https://ecommerce-demo.vercel.app",
-    image: "/portafolio/projects/ecommerce.svg",
-    featured: false,
-  },
-  {
-    id: 2,
-    title: "Grocify",
-    description: "Aplicación movil para el trackeo de listas de compras.",
-    tags: ["Expo", "Supabase", "Clerck"],
-    github: "https://github.com/tuusuario/taskmanager",
-    demo: "https://taskmanager-demo.vercel.app",
-    image: "/portafolio/projects/taskmanager.svg",
-    featured: false,
-  },
+/**
+ * Clave de cada proyecto: con ella se busca su descripción en
+ * `dictionaries/*.json` (`projects.items[slug].description`).
+ */
+export type ProjectSlug = "kribb" | "grocify";
+
+export interface Project {
+  id: number;
+  slug: ProjectSlug;
+  title: string;
+  tags: readonly string[];
+  github: string;
+  demo?: string;
+  image?: string;
+  featured?: boolean;
+}
+
+export const projects: readonly Project[] = [
+  // {
+  //   id: 1,
+  //   slug: "kribb",
+  //   title: "Kribb",
+  //   tags: ["Expo", "Supabase", "Clerck"],
+  //   github: "https://github.com/tuusuario/ecommerce",
+  //   demo: "https://ecommerce-demo.vercel.app",
+  //   image: "/portafolio/projects/ecommerce.svg",
+  //   featured: false,
+  // },
+  // {
+  //   id: 2,
+  //   slug: "grocify",
+  //   title: "Grocify",
+  //   tags: ["Expo", "Supabase", "Clerck"],
+  //   github: "https://github.com/tuusuario/taskmanager",
+  //   demo: "https://taskmanager-demo.vercel.app",
+  //   image: "/portafolio/projects/taskmanager.svg",
+  //   featured: false,
+  // },
 ];

@@ -1,22 +1,29 @@
 import Image from "next/image";
 import { Section } from "./Section";
 import { personalInfo } from "@/lib/data";
+import type { Dictionary } from "@/dictionaries";
 
-export function Hero() {
-  const { name, title, shortBio, social, avatar } = personalInfo;
+export function Hero({ dict }: { dict: Dictionary }) {
+  const { name, title, social, avatar } = personalInfo;
+  const { hero, nav } = dict;
 
   const [firstName, ...rest] = name.split(" ");
   const lastName = rest.join(" ");
 
   return (
-    <Section id="hero" index="01" label="Inicio" meta={title}>
+    <Section
+      id="hero"
+      index="01"
+      label={nav.sections.hero}
+      meta={title}
+    >
       <div className="flex flex-col items-center px-6 py-16 text-center md:px-10 md:py-24">
         {/* Avatar */}
         <div className="mb-6">
           {avatar ? (
             <Image
               src={avatar}
-              alt={`${name} - Foto de perfil`}
+              alt={`${name} - ${hero.photoAlt}`}
               width={112}
               height={112}
               className="h-24 w-24 rounded-full border border-line object-cover md:h-28 md:w-28"
@@ -26,7 +33,7 @@ export function Hero() {
           ) : (
             <div
               className="flex h-24 w-24 items-center justify-center rounded-full border border-line bg-invert-bg text-3xl font-bold text-invert-fg md:h-28 md:w-28"
-              aria-label={`${name} - Avatar generado`}
+              aria-label={`${name} - ${hero.avatarAlt}`}
             >
               {name.charAt(0).toUpperCase()}
             </div>
@@ -49,22 +56,23 @@ export function Hero() {
           id="hero-heading"
           className="display max-w-4xl text-4xl text-ink-strong sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          Construyo productos web{" "}
-          <span className="text-accent-ink">modernos</span> y escalables.
+          {hero.heading.before}{" "}
+          <span className="text-accent-ink">{hero.heading.accent}</span>{" "}
+          {hero.heading.after}
         </h1>
 
         {/* Bio */}
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          {shortBio}
+          {hero.bio}
         </p>
 
         {/* Llamadas a la acción */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a href="#projects" className="btn btn-primary">
-            Ver proyectos
+            {hero.projectsCta}
           </a>
           <a href="#contact" className="btn btn-outline">
-            Contacto
+            {hero.contactCta}
           </a>
         </div>
 

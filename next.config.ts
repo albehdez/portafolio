@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  experimental: {
+    // El sitio tiene dos layouts raíz (`app/(root)` y `app/[lang]`), así que el
+    // 404 no puede componerse con un layout: lo define `app/global-not-found.tsx`.
+    globalNotFound: true,
+  },
 };
 
 export default nextConfig;

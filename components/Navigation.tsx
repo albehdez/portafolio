@@ -2,19 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { personalInfo } from "@/lib/data";
+import type { Dictionary } from "@/dictionaries";
+import type { Locale } from "@/lib/i18n";
 
 const sections = ["hero", "about", "skills", "projects", "contact"] as const;
 
-const sectionLabels: Record<(typeof sections)[number], string> = {
-  hero: "Inicio",
-  about: "Sobre mí",
-  skills: "Habilidades",
-  projects: "Proyectos",
-  contact: "Contacto",
-};
+interface NavigationProps {
+  /** Idioma actual, para el selector de idioma. */
+  locale: Locale;
+  dict: Dictionary["nav"];
+  theme: Dictionary["theme"];
+}
 
-export function Navigation() {
+export function Navigation({ locale, dict, theme }: NavigationProps) {
   const [activeSection, setActiveSection] =
     useState<(typeof sections)[number]>("hero");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -74,7 +76,7 @@ export function Navigation() {
   return (
     <nav
       className="no-print sticky top-0 left-0 z-50 w-full border-b border-line bg-bg/90 backdrop-blur-md"
-      aria-label="Navegación principal"
+      aria-label={dict.label}
     >
       <div className="flex h-12 items-stretch justify-between">
         {/* Logo */}
@@ -83,7 +85,7 @@ export function Navigation() {
             type="button"
             onClick={() => scrollToSection("hero")}
             className="relative flex items-center gap-2.5 border-r border-line px-4 hover:opacity-70 focus:outline-none sm:px-5"
-            aria-label="Ir al inicio"
+            aria-label={dict.home}
           >
             {/* Reserva el ancho del badge para que el nombre quede siempre a su derecha */}
             <span
@@ -138,7 +140,7 @@ export function Navigation() {
                           : "text-muted group-hover:bg-invert-bg group-hover:text-invert-fg"
                       }`}
                     >
-                      {sectionLabels[section]}
+                      {dict.sections[section]}
                     </span>
                   </button>
                 </li>
@@ -189,16 +191,16 @@ export function Navigation() {
             </a>
           ) : null}
 
-          <ThemeToggle />
+          <LanguageSwitcher current={locale} label={dict.language} />
 
-          
+          <ThemeToggle dict={theme} />
 
           {/* Botón menú móvil */}
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             className="invert-block flex w-12 items-center justify-center border-l border-line text-muted hover:text-invert-fg focus:outline-none md:hidden"
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-label={menuOpen ? dict.closeMenu : dict.openMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
@@ -248,7 +250,7 @@ export function Navigation() {
                     }`}
                     aria-current={active ? "page" : undefined}
                   >
-                    {sectionLabels[section]}
+                    {dict.sections[section]}
                     <span className="text-faint" aria-hidden="true">
                       0{sections.indexOf(section) + 1}
                     </span>

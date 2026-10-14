@@ -2,21 +2,24 @@
 
 import { useState, type CSSProperties } from "react";
 import { Section } from "./Section";
-import { skills } from "@/lib/data";
+import { skills, type SkillCategory } from "@/lib/data";
 import { techIcons } from "@/lib/techIcons";
+import type { Dictionary } from "@/dictionaries";
 
-const categories = ["all", ...skills.map((s) => s.category)];
+type CategoryKey = "all" | SkillCategory;
 
-const categoryLabels: Record<string, string> = {
-  all: "Todas",
-  Frontend: "Frontend",
-  Backend: "Backend",
-  "Base de Datos": "Base de Datos",
-  "DevOps & Tools": "DevOps y Herramientas",
-};
+const categories: CategoryKey[] = ["all", ...skills.map((s) => s.category)];
 
-export function Skills() {
-  const [activeCategory, setActiveCategory] = useState("all");
+interface SkillsProps {
+  dict: Dictionary["skills"];
+  label: string;
+}
+
+export function Skills({ dict, label }: SkillsProps) {
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
+
+  const categoryLabel = (category: CategoryKey) =>
+    category === "all" ? dict.all : dict.categories[category];
 
   const filteredSkills =
     activeCategory === "all"
@@ -31,25 +34,25 @@ export function Skills() {
           })) ?? []);
 
   return (
-    <Section id="skills" index="03" label="Habilidades" meta="Stack técnico">
+    <Section id="skills" index="03" label={label} meta={dict.meta}>
       <div className="px-6 py-14 md:px-10 md:py-20">
         <h2
           id="skills-heading"
           className="display max-w-3xl text-3xl text-ink-strong md:text-5xl"
         >
-          Tecnologías y{" "}
-          <span className="text-accent-ink">habilidades</span>.
+          {dict.heading.before}{" "}
+          <span className="text-accent-ink">{dict.heading.accent}</span>
+          {dict.heading.after}
         </h2>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-          Herramientas y tecnologías que uso para construir aplicaciones
-          modernas y escalables.
+          {dict.intro}
         </p>
 
         {/* Filtro por categoría */}
         <div
           className="mt-8 flex flex-wrap gap-2"
           role="tablist"
-          aria-label="Filtrar tecnologías por categoría"
+          aria-label={dict.filterLabel}
         >
           {categories.map((category) => {
             const active = activeCategory === category;
@@ -66,7 +69,7 @@ export function Skills() {
                     : "border-line text-muted hover:border-line-strong hover:text-ink"
                 }`}
               >
-                {categoryLabels[category] ?? category}
+                {categoryLabel(category)}
               </button>
             );
           })}
@@ -75,7 +78,7 @@ export function Skills() {
         {/* Rejilla de tecnologías */}
         <div
           role="tabpanel"
-          aria-label={`${categoryLabels[activeCategory] ?? activeCategory} habilidades`}
+          aria-label={`${categoryLabel(activeCategory)} ${dict.panelSuffix}`}
           className="mt-10 grid grid-cols-3 gap-px border border-line bg-line sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
         >
           {filteredSkills.map((skill) => {
@@ -95,15 +98,7 @@ export function Skills() {
                 }
               >
                 <span className="sr-only">
-                  {skill.name}: {skill.level} por ciento
-                </span>
-
-                {/* Nivel (visible para quien ve la rejilla) */}
-                <span
-                  className="hud-label absolute right-2.5 top-2.5 text-faint"
-                  aria-hidden="true"
-                >
-                  {skill.level}
+                  {skill.name}: {skill.level} {dict.levelSuffix}
                 </span>
 
                 {icons.length > 0 ? (
@@ -143,9 +138,7 @@ export function Skills() {
           })}
         </div>
 
-        <p className="hud-label mt-8 text-faint">
-          Pasa el cursor sobre cada tecnología para ver su color de marca
-        </p>
+        <p className="hud-label mt-8 text-faint">{dict.hint}</p>
       </div>
     </Section>
   );

@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "title": "Alberto | Fullstack Developer",
+    "description": "Desarrollador apasionado por crear soluciones web modernas y escalables",
+    "keywords": [
+      "Fullstack Developer",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Portfolio",
+      "Web Developer"
+    ]
+  },
+  "nav": {
+    "label": "Navegación principal",
+    "home": "Ir al inicio",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "language": "Cambiar idioma",
+    "sections": {
+      "hero": "Inicio",
+      "about": "Sobre mí",
+      "skills": "Habilidades",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    }
+  },
+  "theme": {
+    "toLight": "Cambiar a modo claro",
+    "toDark": "Cambiar a modo oscuro"
+  },
+  "hero": {
+    "photoAlt": "Foto de perfil",
+    "avatarAlt": "Avatar generado",
+    "heading": {
+      "before": "Construyo productos web",
+      "accent": "modernos",
+      "after": "y escalables."
+    },
+    "bio": "Desarrollador apasionado por crear soluciones web modernas y escalables",
+    "projectsCta": "Ver proyectos",
+    "contactCta": "Contacto"
+  },
+  "about": {
+    "meta": "Quién soy",
+    "heading": {
+      "before": "Un desarrollador",
+      "accent": "curioso",
+      "after": "y obsesionado con el detalle."
+    },
+    "paragraphs": [
+      "Soy un Fullstack Developer con experiencia construyendo aplicaciones web completas usando tecnologías modernas del ecosistema JavaScript/TypeScript. Me especializo en el desarrollo de interfaces de usuario reactivas y APIs robustas.",
+      "Mi stack principal incluye React, Next.js, Node.js, TypeScript, Tailwind CSS y bases de datos como MongoDB y PostgreSQL. También tengo experiencia con Docker, AWS y prácticas de CI/CD para despliegues automatizados.",
+      "Me apasiona escribir código limpio, mantenible y escalable. Disfruto aprendiendo nuevas tecnologías, contribuyendo a proyectos open source y resolviendo problemas complejos con soluciones elegantes."
+    ],
+    "stats": {
+      "experience": "Años de experiencia",
+      "projects": "Proyectos completados",
+      "technologies": "Tecnologías dominadas",
+      "clients": "Clientes satisfechos"
+    }
+  },
+  "skills": {
+    "meta": "Stack técnico",
+    "heading": {
+      "before": "Tecnologías y",
+      "accent": "habilidades",
+      "after": "."
+    },
+    "intro": "Herramientas y tecnologías que uso para construir aplicaciones modernas y escalables.",
+    "filterLabel": "Filtrar tecnologías por categoría",
+    "panelSuffix": "habilidades",
+    "all": "Todas",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Base de Datos",
+      "devops": "DevOps y Herramientas",
+      "IA": "IA y Automatización"
+    },
+    "levelSuffix": "por ciento",
+    "hint": "Pasa el cursor sobre cada tecnología para ver su color de marca"
+  },
+  "projects": {
+    "meta": "Trabajo seleccionado",
+    "heading": {
+      "before": "Proyectos",
+      "accent": "seleccionados",
+      "after": "."
+    },
+    "featured": "Destacado",
+    "techLabel": "Tecnologías",
+    "open": "Abrir",
+    "imageAlt": "Captura de",
+    "demo": "Demo",
+    "code": "Código",
+    "items": {
+      "kribb": {
+        "description": "Plataforma para comprar bienes inmuebles"
+      },
+      "grocify": {
+        "description": "Aplicación movil para el trackeo de listas de compras."
+      }
+    }
+  },
+  "contact": {
+    "meta": "Disponible",
+    "heading": {
+      "before": "Trabajemos",
+      "accent": "juntos",
+      "after": "."
+    },
+    "lead": "¡No dudes en escribirme!",
+    "emailCta": "Enviar email"
+  }
+}

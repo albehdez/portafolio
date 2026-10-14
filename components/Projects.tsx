@@ -1,30 +1,33 @@
 import Image from "next/image";
 import { Section } from "./Section";
-import { projects } from "@/lib/data";
+import { projects, type Project } from "@/lib/data";
+import type { Dictionary } from "@/dictionaries";
 
-export function Projects() {
+export function Projects({ dict }: { dict: Dictionary }) {
+  const { projects: copy, nav } = dict;
+
   return (
     <Section
       id="projects"
       index="04"
-      label="Proyectos"
-      meta="Trabajo seleccionado"
+      label={nav.sections.projects}
+      meta={copy.meta}
     >
       <div className="px-6 py-14 md:px-10 md:py-20">
         <h2
           id="projects-heading"
           className="display max-w-3xl text-3xl text-ink-strong md:text-5xl"
         >
-          Proyectos{" "}
+          {copy.heading.before}{" "}
           <span className="font-serif italic tracking-normal text-accent-ink">
-            seleccionados
+            {copy.heading.accent}
           </span>
-          .
+          {copy.heading.after}
         </h2>
 
         <div className="mt-10 grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} dict={copy} />
           ))}
         </div>
       </div>
@@ -33,10 +36,11 @@ export function Projects() {
 }
 
 interface ProjectCardProps {
-  project: (typeof projects)[0];
+  project: Project;
+  dict: Dictionary["projects"];
 }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, dict }: ProjectCardProps) {
   const primaryHref = project.demo ?? project.github;
 
   return (
@@ -47,12 +51,12 @@ function ProjectCard({ project }: ProjectCardProps) {
         target="_blank"
         rel="noopener noreferrer"
         className="relative block aspect-[16/10] overflow-hidden border-b border-line bg-bg-sunken"
-        aria-label={`Abrir ${project.title}`}
+        aria-label={`${dict.open} ${project.title}`}
       >
         {project.image ? (
           <Image
             src={project.image}
-            alt={`Captura de ${project.title}`}
+            alt={`${dict.imageAlt} ${project.title}`}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -69,7 +73,7 @@ function ProjectCard({ project }: ProjectCardProps) {
 
         {project.featured ? (
           <span className="hud-label absolute right-3 top-3 border border-line bg-bg/90 px-2 py-1 text-ink backdrop-blur-sm">
-            Destacado
+            {dict.featured}
           </span>
         ) : null}
       </a>
@@ -80,11 +84,11 @@ function ProjectCard({ project }: ProjectCardProps) {
           {project.title}
         </h3>
         <p className="mt-3 flex-1 text-sm leading-relaxed text-muted line-clamp-3">
-          {project.description}
+          {dict.items[project.slug].description}
         </p>
 
         {/* Tecnologías */}
-        <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Tecnologías">
+        <ul className="mt-5 flex flex-wrap gap-1.5" aria-label={dict.techLabel}>
           {project.tags.map((tag) => (
             <li
               key={tag}
@@ -104,7 +108,7 @@ function ProjectCard({ project }: ProjectCardProps) {
               rel="noopener noreferrer"
               className="hud-label text-muted transition-colors hover:text-ink"
             >
-              Demo ↗
+              {dict.demo} ↗
             </a>
           ) : null}
           <a
@@ -113,7 +117,7 @@ function ProjectCard({ project }: ProjectCardProps) {
             rel="noopener noreferrer"
             className="hud-label text-muted transition-colors hover:text-ink"
           >
-            Código ↗
+            {dict.code} ↗
           </a>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { createElement as h } from "react";
 // En Node pelado "next/og" no resuelve sin bundler, así que apuntamos al módulo real.
 import { ImageResponse } from "next/og.js";
 
-// Genera el favicon (app/icon.png): reproduce el badge "AH" del header
+// Genera el favicon (public/icon.png): reproduce el badge "AH" del header
 // (components/Navigation.tsx → `.hud-label` + `bg-invert-bg px-1.5 py-1 font-bold`).
 // Uso: pnpm generate:icon
 
@@ -71,5 +71,8 @@ const image = new ImageResponse(
 );
 
 const png = Buffer.from(await image.arrayBuffer());
-const target = join(process.cwd(), "app", "icon.png");
+// Va en `public/` y se declara a mano en el metadata de los layouts: como
+// archivo de metadata dentro de un segmento dinámico Next lo exportaba con el
+// nombre del segmento literal (`/-/icon.png`).
+const target = join(process.cwd(), "public", "icon.png");
 await writeFile(target, png);

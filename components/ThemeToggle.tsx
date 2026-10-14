@@ -1,11 +1,12 @@
 "use client";
 
+import type { Dictionary } from "@/dictionaries";
 import { useTheme } from "./ThemeProvider";
 
-export function ThemeToggle() {
+export function ThemeToggle({ dict }: { dict: Dictionary["theme"] }) {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
-  const label = isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro";
+  const label = isDark ? dict.toLight : dict.toDark;
 
   return (
     <button

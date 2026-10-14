@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "title": "Alberto | Fullstack Developer",
+    "description": "Developer passionate about building modern, scalable web solutions",
+    "keywords": [
+      "Fullstack Developer",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Portfolio",
+      "Web Developer"
+    ]
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Back to top",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Change language",
+    "sections": {
+      "hero": "Home",
+      "about": "About",
+      "skills": "Skills",
+      "projects": "Projects",
+      "contact": "Contact"
+    }
+  },
+  "theme": {
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "hero": {
+    "photoAlt": "Profile photo",
+    "avatarAlt": "Generated avatar",
+    "heading": {
+      "before": "I build",
+      "accent": "modern",
+      "after": "and scalable web products."
+    },
+    "bio": "Developer passionate about building modern, scalable web solutions",
+    "projectsCta": "View projects",
+    "contactCta": "Contact"
+  },
+  "about": {
+    "meta": "Who I am",
+    "heading": {
+      "before": "A",
+      "accent": "curious",
+      "after": "developer obsessed with the details."
+    },
+    "paragraphs": [
+      "I'm a Fullstack Developer with experience building complete web applications with modern technologies from the JavaScript/TypeScript ecosystem. I specialize in building reactive user interfaces and robust APIs.",
+      "My core stack includes React, Next.js, Node.js, TypeScript, Tailwind CSS and databases such as MongoDB and PostgreSQL. I also have experience with Docker, AWS and CI/CD practices for automated deployments.",
+      "I'm passionate about writing clean, maintainable and scalable code. I enjoy learning new technologies, contributing to open source projects and solving complex problems with elegant solutions."
+    ],
+    "stats": {
+      "experience": "Years of experience",
+      "projects": "Projects completed",
+      "technologies": "Technologies mastered",
+      "clients": "Happy clients"
+    }
+  },
+  "skills": {
+    "meta": "Tech stack",
+    "heading": {
+      "before": "Technologies and",
+      "accent": "skills",
+      "after": "."
+    },
+    "intro": "Tools and technologies I use to build modern, scalable applications.",
+    "filterLabel": "Filter technologies by category",
+    "panelSuffix": "skills",
+    "all": "All",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Databases",
+      "devops": "DevOps & Tools",
+      "IA": "AI & Automation"
+    },
+    "levelSuffix": "percent",
+    "hint": "Hover over any technology to see its brand colour"
+  },
+  "projects": {
+    "meta": "Selected work",
+    "heading": {
+      "before": "Selected",
+      "accent": "projects",
+      "after": "."
+    },
+    "featured": "Featured",
+    "techLabel": "Technologies",
+    "open": "Open",
+    "imageAlt": "Screenshot of",
+    "demo": "Demo",
+    "code": "Code",
+    "items": {
+      "kribb": {
+        "description": "Platform to buy real estate"
+      },
+      "grocify": {
+        "description": "Mobile app to track shopping lists."
+      }
+    }
+  },
+  "contact": {
+    "meta": "Available",
+    "heading": {
+      "before": "Let's work",
+      "accent": "together",
+      "after": "."
+    },
+    "lead": "Feel free to reach out!",
+    "emailCta": "Send email"
+  }
+}

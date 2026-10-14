@@ -1,22 +1,13 @@
 import type { ReactNode } from "react";
 
 interface SectionProps {
-  /** id del ancla de la sección */
   id: string;
-  /** número de sección, p. ej. "01" */
   index: string;
-  /** etiqueta de la sección, p. ej. "Inicio" */
   label: string;
-  /** texto opcional a la derecha de la barra */
   meta?: string;
   children: ReactNode;
 }
 
-/**
- * Marco de sección al estilo ArtCraft: contenedor centrado con hairlines
- * verticales, marcas de esquina y una barra superior pegajosa con el
- * índice y la etiqueta en tipografía mono.
- */
 export function Section({ id, index, label, meta, children }: SectionProps) {
   return (
     <section id={id} className="relative" aria-labelledby={`${id}-heading`}>

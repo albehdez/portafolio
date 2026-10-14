@@ -16,9 +16,19 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `app/[lang]/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Idiomas
+
+El sitio está en español e inglés. La portada `/` redirige al idioma del visitante (primero el elegido a mano, guardado en `localStorage`, y si no el del navegador) y cada idioma tiene su propia URL estática: `/es/` y `/en/`.
+
+- Los textos viven en `dictionaries/es.json` y `dictionaries/en.json`. `en.json` define la forma del tipo `Dictionary`, así que al añadir una clave en un idioma el build falla hasta que exista también en el otro.
+- `lib/data.ts` sólo contiene datos que no se traducen (nombres, enlaces, niveles, tecnologías).
+- Para añadir un idioma: agrégalo a `locales` en `lib/i18n.ts`, crea `dictionaries/<idioma>.json` y añade su entrada en `dictionaries.ts`. Las páginas se generan solas vía `generateStaticParams`.
+
+El sitio se exporta estáticamente (`output: "export"`), así que no hay middleware ni redirecciones de servidor: la raíz se resuelve con un script en `app/(root)/layout.tsx` y el 404 lo define `app/global-not-found.tsx`.
 
 ## Learn More
 
