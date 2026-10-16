@@ -38,6 +38,7 @@ export const skills: {
     category: "backend",
     items: [
       { name: "Nest.js", level: 82 },
+      { name: "ERPNext", level: 23}
     ],
   },
   {
